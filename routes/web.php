@@ -23,7 +23,12 @@ Route::group(['prefix' => 'admin'], function () {
     });
 });
 
-Route::resource('dev', 'DevController')->parameters(['dev' => 'id']);
+Route::get('dev', 'DevController@index');
+
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::resource('dev', 'DevController')->parameters(['dev' => 'id'])->except(['index']);
+});
+
 Route::resource('post', 'PostsController')->parameters(['post' => 'id']);
 
 /* Rotinas abaixo ignoradas para utilizar o controller *?

@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Log;
 
 class DevController extends Controller
 {
+
+    public function __construct()
+    {
+        // $this->middleware('auth:api')->only(['store']);
+
+        $this->middleware('auth:api')->except(['index']);
+
+        //$this->middleware('auth:api')->only(['index']);
+    }
     /**
      * Display a listing of the resource.
      *

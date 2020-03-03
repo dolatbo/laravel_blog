@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// api mesma rota web com "api/" na rota
+Route::post('registrar-usuario', 'API\UserController@registrar');
+Route::post('login', 'API\UserController@login');
+
+Route::middleware('auth:api')->get('usuario-detalhes', 'API\UserController@detalhesUser');
