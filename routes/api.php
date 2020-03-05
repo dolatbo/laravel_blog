@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Models\PasswordResets;
 use Illuminate\Http\Request;
 
 /*
@@ -16,5 +17,10 @@ use Illuminate\Http\Request;
 // api mesma rota web com "api/" na rota
 Route::post('registrar-usuario', 'API\UserController@registrar');
 Route::post('login', 'API\UserController@login');
+
+// api/password/redefinir-senha
+Route::group(['namespace' => 'API', 'prefix' => 'password'], function () {
+    Route::post('redefinir-senha', 'PasswordResetController@criarToken');
+});
 
 Route::middleware('auth:api')->get('usuario-detalhes', 'API\UserController@detalhesUser');
