@@ -50,7 +50,7 @@ class PasswordResetController extends Controller
     private function getEmailDoToken($token)
     {
         $horas_expiracao = config('configuracoes_personalizadas.password_expires');
-        dd($horas_expiracao);
+        // dd($horas_expiracao);
         $passwordReset = PasswordResets::where('token', $token)->first();
 
         $result = ['result' => false, 'passwordReset' => ''];
