@@ -21,6 +21,7 @@ Route::post('login', 'API\UserController@login');
 // api/password/redefinir-senha
 Route::group(['namespace' => 'API', 'prefix' => 'password'], function () {
     Route::post('redefinir-senha', 'PasswordResetController@criarToken');
+    Route::post('nova-senha', 'PasswordResetController@reset');
 });
 
 Route::middleware('auth:api')->get('usuario-detalhes', 'API\UserController@detalhesUser');

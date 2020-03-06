@@ -42,9 +42,8 @@ class PasswordResetRequest extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = url('/API/password/find/', $this->token);
-
-
+        // Alterar a url para apontar para um formulário no front-end futuramente.
+        $url = url('/api/password/nova-senha?token=', $this->token);
         return (new MailMessage)
             ->line('Olá, conforme solicitado segue informações para recuperação de sua senha')
             ->action('Nova senha', $url)
