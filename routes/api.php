@@ -24,4 +24,7 @@ Route::group(['namespace' => 'API', 'prefix' => 'password'], function () {
     Route::post('nova-senha', 'PasswordResetController@reset');
 });
 
-Route::middleware('auth:api')->get('usuario-detalhes', 'API\UserController@detalhesUser');
+Route::middleware(['auth:api'])->group(function () {
+    Route::get('usuario-detalhes', 'API\UserController@detalhesUser');
+    Route::get('logout', 'API\UserController@logout');
+});

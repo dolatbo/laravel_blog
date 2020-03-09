@@ -90,7 +90,8 @@ class PasswordResetController extends Controller
                 return response()->json(['error' => 'Usuário não encontrado'], 404);
             }
 
-            $user->password = bcrypt($request->password);
+            //$user->password = bcrypt($request->password);
+            $user->password = $request->password;
             $user->save();
 
             $resultToken['passwordReset']->delete();

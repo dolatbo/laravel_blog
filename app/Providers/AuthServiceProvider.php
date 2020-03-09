@@ -26,6 +26,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Passport::routes();
+        // Invalidar token apos um tempo
+        // ex.: now() // ou seja o momento que a pessoa executou o login
+        // addGRANDEZA_DE_TEMPO(QUANTIDADE)
+        Passport::personalAccessTokensExpireIn(now()->addMinutes(5));
 
         //
     }

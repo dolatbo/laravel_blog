@@ -41,7 +41,8 @@ class UserController extends Controller
             return response()->json(['error' => $validarUsuario->errors()], 400);
         }
         $json = $request->all();
-        $json['password'] = bcrypt($json['password']); // Criptografar senha obrigatório
+        //$json['password'] = bcrypt($json['password']); // Criptografar senha obrigatório
+
         $user = User::create($json);
 
         $sucesso['token'] = $user->createToken($this->tokenName)->accessToken;
@@ -49,6 +50,12 @@ class UserController extends Controller
         $sucesso['nome'] = $user->name;
 
         return response()->json(['ok' => $sucesso]);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return response()->json(['ok' => 'Você saiu']);
     }
 
     public function detalhesUser()
