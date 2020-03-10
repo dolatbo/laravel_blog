@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
         // Invalidar token apos um tempo
         // ex.: now() // ou seja o momento que a pessoa executou o login
         // addGRANDEZA_DE_TEMPO(QUANTIDADE)
-        Passport::personalAccessTokensExpireIn(now()->addMinutes(5));
+        Passport::personalAccessTokensExpireIn(now()->addMinutes(59));
 
         //
     }

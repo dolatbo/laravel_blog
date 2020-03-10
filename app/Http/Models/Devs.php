@@ -19,6 +19,11 @@ class Devs extends Model
 
     public function techs()
     {
-        return $this->belongsToMany('App\Http\Models\Techs', 'devs_techs', 'dev_id', 'techs_id');
+        return $this->belongsToMany(
+            'App\Http\Models\Techs',
+            'devs_techs',
+            'dev_id',
+            'techs_id'
+        )->using('App\Http\Models\Pivot\DevsTechs');
     }
 }
