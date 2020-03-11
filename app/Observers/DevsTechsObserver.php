@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Http\Models\Pivot\DevsTechs;
+use Illuminate\Support\Facades\Log;
 
 class DevsTechsObserver
 {
@@ -14,7 +15,7 @@ class DevsTechsObserver
      */
     public function created(DevsTechs $devsTechs)
     {
-        //
+        Log::alert('created' . $devsTechs->toJson());
     }
 
     /**
@@ -25,7 +26,7 @@ class DevsTechsObserver
      */
     public function updated(DevsTechs $devsTechs)
     {
-        //
+        Log::alert('updated' . $devsTechs->toJson());
     }
 
     /**
@@ -36,7 +37,7 @@ class DevsTechsObserver
      */
     public function deleted(DevsTechs $devsTechs)
     {
-        //
+        Log::alert('deleted' . $devsTechs->toJson());
     }
 
     /**

@@ -27,6 +27,7 @@ Route::get('dev', 'DevController@index');
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('dev', 'DevController')->parameters(['dev' => 'id'])->except(['index']);
+    Route::resource('dev-tech', 'DevTechsController')->parameters(['dev-tech' => 'id'])->middleware('dev-tech');
 });
 
 Route::resource('post', 'PostsController')->parameters(['post' => 'id']);
@@ -85,5 +86,3 @@ Route::delete('devs/{id}', function ($id) {
     //return $devs;
     return response()->json(['Ok' => 'registro apagado com sucesso'], 200); */
 });
-
-Route::resource('dev-tech', 'DevTechsController')->parameters(['dev-tech' => 'id'])->middleware('dev-tech');
