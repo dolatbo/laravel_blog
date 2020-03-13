@@ -6,6 +6,8 @@ use App\Http\Models\Devs;
 use App\Http\Models\Posts;
 use App\Jobs\SendEmailJob;
 use App\Mail\SendEmailDevs;
+use App\Notifications\NewDev;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -28,6 +30,8 @@ class DevObserver
         $infs['email'] = 'douglas@datamais.com.br';
 
         SendEmailJob::dispatch($devs->toArray(), $infs);
+
+        Notification::route('slack', env('SLACK_HOOK'))->notify(new NewDev($devs->toArray()));
 
         // $sendMail = new SendEmailDevs($devs->toArray());
         // Mail::to($infs['email'])->send($sendMail);
